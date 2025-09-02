@@ -1,0 +1,11 @@
+*.class
+*.log
+.idea
+target
+credentials.properties
+/bin/
+/.classpath
+/.project
+.DS_Store
+.envrc
+/ca.json
