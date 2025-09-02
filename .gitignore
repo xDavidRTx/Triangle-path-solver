@@ -9,3 +9,4 @@ credentials.properties
 .DS_Store
 .envrc
 /ca.json
+/.bsp/
