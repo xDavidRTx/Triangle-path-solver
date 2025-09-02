@@ -17,10 +17,10 @@ class DataLoaderSuite extends CatsEffectSuite {
     val program: EitherT[IO, String, Triangle] = DataLoader.loadFromStdin(console)
 
     val expected = Triangle(
-      List(
-        TriangleRow(List(Node(1))),
-        TriangleRow(List(Node(2), Node(3))),
-        TriangleRow(List(Node(4), Node(5), Node(6)))
+      Vector(
+        TriangleRow(Vector(Node(1))),
+        TriangleRow(Vector(Node(2), Node(3))),
+        TriangleRow(Vector(Node(4), Node(5), Node(6)))
       )
     )
 
@@ -49,7 +49,7 @@ class DataLoaderSuite extends CatsEffectSuite {
     val rawInput =
       """1
         |2 3
-        |4 5 6 5""".stripMargin
+        |4 5 4 4""".stripMargin
 
     val console = new FakeConsole(rawInput)
     val program: EitherT[IO, String, Triangle] = DataLoader.loadFromStdin(console)

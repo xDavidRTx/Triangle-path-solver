@@ -8,5 +8,6 @@ lazy val root = (project in file(".")).settings(name := "triangle-path-solver",
     "org.typelevel" %% "munit-cats-effect-3" % "1.0.7" % Test
   ))
 
-val jarName = "TrianglePathSolver.jar"
+val jarName = "MinTrianglePath.jar"
 assembly / assemblyJarName := jarName
+assembly / assemblyOutputPath := baseDirectory.value / jarName

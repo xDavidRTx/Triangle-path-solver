@@ -1,14 +1,18 @@
 package model
 
-case class TriangleRow(nodes: List[Node])
+case class TriangleRow(nodes: Vector[Node])
 
-case class Triangle(rows: List[TriangleRow])
+case class Triangle(rows: Vector[TriangleRow]) {
 
-object Triangle {
-  def fromRows(rows: List[TriangleRow]): Either[String, Triangle] = {
-    if (rows.zipWithIndex.forall { case (r, i) => r.nodes.size == i + 1 })
-      Right(Triangle(rows))
-    else
-      Left("Invalid triangle shape")
-  }
+  def calculateMinPath(): NodePath =
+    rows
+      .foldRight(Vector.fill(rows.length + 1)(NodePath(0, Vector.empty))) { (row, nodePaths) =>
+        row.nodes.indices.toVector.map { j =>
+          val left  = nodePaths(j)
+          val right = nodePaths(j + 1)
+          if (left.sum < right.sum) left.addNode(row.nodes(j))
+          else right.addNode(row.nodes(j))
+        }
+      }
+      .head
 }
