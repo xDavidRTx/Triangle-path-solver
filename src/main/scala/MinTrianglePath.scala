@@ -1,11 +1,11 @@
 import cats.effect.{IO, IOApp}
 import services.DataLoader
 
-object TrianglePathSolver extends IOApp.Simple {
+object MinTrianglePath extends IOApp.Simple {
 
   def run: IO[Unit] =
     DataLoader
-      .loadFromStdin(IO.consoleForIO)
+      .loadFromConsole(IO.consoleForIO)
       .map(_.calculateMinPath())
       .value
       .flatMap {

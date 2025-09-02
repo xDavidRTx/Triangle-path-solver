@@ -6,7 +6,7 @@ import cats.effect.std.Console
 
 import java.nio.charset.Charset
 
-class FakeConsole(rawInput: String) extends Console[IO] {
+class MockConsole(rawInput: String) extends Console[IO] {
   private val lines = rawInput.split("\n").toList.map(_.trim).filter(_.nonEmpty)
   private val iter = lines.iterator
 

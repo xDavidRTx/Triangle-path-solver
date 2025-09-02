@@ -13,9 +13,9 @@ class DataLoaderSuite extends CatsEffectSuite {
         |2 3
         |4 5 6""".stripMargin
 
-    val console = new FakeConsole(rawInput)
+    val console = new MockConsole(rawInput)
     val program: EitherT[IO, String, Triangle] =
-      DataLoader.loadFromStdin(console)
+      DataLoader.loadFromConsole(console)
 
     val expected = Triangle(
       Vector(
@@ -36,9 +36,9 @@ class DataLoaderSuite extends CatsEffectSuite {
         |2 x
         |4 5 6""".stripMargin
 
-    val console = new FakeConsole(rawInput)
+    val console = new MockConsole(rawInput)
     val program: EitherT[IO, String, Triangle] =
-      DataLoader.loadFromStdin(console)
+      DataLoader.loadFromConsole(console)
 
     program.value.map { result =>
       assert(result.isLeft)
@@ -53,9 +53,9 @@ class DataLoaderSuite extends CatsEffectSuite {
         |2 3
         |4 5 4 4""".stripMargin
 
-    val console = new FakeConsole(rawInput)
+    val console = new MockConsole(rawInput)
     val program: EitherT[IO, String, Triangle] =
-      DataLoader.loadFromStdin(console)
+      DataLoader.loadFromConsole(console)
 
     program.value.map { result =>
       assert(result.isLeft)

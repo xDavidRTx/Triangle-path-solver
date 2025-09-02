@@ -32,7 +32,7 @@ object DataLoader {
       }
       .map(TriangleRow(_))
 
-  private def fromLines(lines: Vector[String]): Either[String, Triangle] =
+  private def buildTriangle(lines: Vector[String]): Either[String, Triangle] =
     for {
       rows <- lines.zipWithIndex.traverse { case (line, idx) =>
         fromStringLine(line).leftMap(err => s"Line ${idx + 1}: $err")
@@ -44,6 +44,6 @@ object DataLoader {
       )
     } yield Triangle(rows)
 
-  def loadFromStdin(console: Console[IO]): EitherT[IO, String, Triangle] =
-    EitherT(readLines(console).map(lines => fromLines(lines)))
+  def loadFromConsole(console: Console[IO]): EitherT[IO, String, Triangle] =
+    EitherT(readLines(console).map(buildTriangle))
 }
