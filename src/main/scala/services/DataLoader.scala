@@ -34,9 +34,8 @@ object DataLoader {
 
   private def fromLines(lines: Vector[String]): Either[String, Triangle] =
     for {
-      rows <- lines.zipWithIndex.traverse {
-        case (line, idx) =>
-          fromStringLine(line).leftMap(err => s"Line ${idx + 1}: $err")
+      rows <- lines.zipWithIndex.traverse { case (line, idx) =>
+        fromStringLine(line).leftMap(err => s"Line ${idx + 1}: $err")
       }
       _ <- Either.cond(
         rows.zipWithIndex.forall { case (r, i) => r.nodes.size == i + 1 },

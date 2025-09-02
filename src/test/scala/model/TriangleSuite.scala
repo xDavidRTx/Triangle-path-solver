@@ -18,11 +18,11 @@ class TriangleSuite extends CatsEffectSuite {
     val minPath = triangle.calculateMinPath()
 
     val expectedNodes = Vector(7, 6, 3, 2)
-    val expectedSum   = expectedNodes.sum
+    val expectedSum = expectedNodes.sum
     assertEquals(minPath.path.map(_.value), expectedNodes)
-   // assertEquals(minPath.sum, expectedSum)
+    // assertEquals(minPath.sum, expectedSum)
 
     val expectedOutput = "Minimal path is: 7 + 6 + 3 + 2 = 18"
-    //assertEquals(minPath.encodePretty, expectedOutput)
+    // assertEquals(minPath.encodePretty, expectedOutput)
   }
 }

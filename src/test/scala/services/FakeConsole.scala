@@ -17,4 +17,3 @@ class FakeConsole(rawInput: String) extends Console[IO] {
   override def error[A](a: A)(implicit S: Show[A]): IO[Unit] = IO.unit
   override def errorln[A](a: A)(implicit S: Show[A]): IO[Unit] = IO.unit
 }
-
